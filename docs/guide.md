@@ -9,7 +9,7 @@ Demo hướng dẫn:
 * Bước 1: Đăng ký account merchant tạo môi trường test, VNPAY sẽ cũng cấp thông tin cấu hình như sau:
 
 <p>
-        <img src="/img/cauhinh.png">
+        <img src="img/cauhinh.png">
 </p>
 
 * Bước 2: Tạo URL thanh toán.
