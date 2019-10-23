@@ -1,6 +1,6 @@
 ## Mô hình kết nối
 <p>
-    <img src="https://github.com/ThuyDuong2411/vnpaydocs/blob/master/docs/img/mohinh.png">
+    <img src="img/mohinh.png">
 </p>
 
 * Bước 1: Khách hàng thực hiện mua hàng trên Website TMĐT và Thanh toán trực tuyến cho Đơn hàng.
