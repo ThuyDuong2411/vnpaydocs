@@ -1,0 +1,5 @@
+site_name: Docs VNPAY
+nav:
+    - Giới thiệu: index.md
+    - Mô hình kết nối: paradigm.md
+    - Hướng dẫn tích hợp: guide.md
