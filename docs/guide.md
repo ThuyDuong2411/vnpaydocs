@@ -6,13 +6,15 @@ Hướng dẫn tích hợp Cổng thanh toán VNPAY đã có chi tiết trên [w
 
 Demo hướng dẫn:
 
-* Bước 1: Đăng ký account merchant tạo môi trường test, VNPAY sẽ cũng cấp thông tin cấu hình như sau:
+#### Bước 1: Đăng ký account merchant tạo môi trường test
+
+Khi đăng ký môi trường test, VNPAY sẽ cũng cấp thông tin cấu hình như sau:
 
 <p>
         <img src="/img/cauhinh.png">
 </p>
 
-* Bước 2: Tạo URL thanh toán.
+#### Bước 2: Tạo URL thanh toán
 
 Website TMĐT gửi sang Cổng thanh toán VNPAY các thông tin này khi xử lý giao dịch thanh toán trực tuyến cho khách mua hàng.
 
@@ -58,7 +60,9 @@ URL có dạng:
     - Nếu bỏ trống, khách hàng sẽ chọn Ngân hàng thanh toán tại VNPAY.
     - Nếu thiết lập giá trị (chọn Ngân hàng thanh toán tại Website TMĐT), Tham khảo giá trị tại [Bảng mã Ngân hàng](https://sandbox.vnpayment.vn/apis/danh-sach-ngan-hang/).
 
-* Bước 3: Tạo URL trả về (dùng để hiển thị màn hình thông báo kết quả giao dịch tới khách hàng, xử lý ở Frontend)
+#### Bước 3: Tạo URL trả về 
+
+Dùng để hiển thị màn hình thông báo kết quả giao dịch tới khách hàng, xử lý ở Frontend
 
 URL có dạng:
 
@@ -69,7 +73,7 @@ URL có dạng:
 1. URL này hcir kiểm tra toàn vẹn dữ liệu (checksum) và hiển thị thông báo tới khách hàng.
 2. Không cập nhật kết quả giao dịch tại địa chỉ này.
 
-* Bước 4: Tạo URL IPN
+#### Bước 4: Tạo URL IPN
 
 Địa chỉ để nhận kết quả thanh toán từ VNPAY. Trên URL VNPAY gọi về có mang thông tin thanh toán để căn cứ vào kết quả đó Website TMĐT xử lý các bước tiếp theo.
 
@@ -79,3 +83,7 @@ URL có dạng:
 
 **Một số lưu ý**
 
+1. Merchant/website TMĐT thực hiện kiểm tra sự toàn vẹn của dữ liệu (checksum) trước khi thực hiện các thao tác khác.
+2. Thao tác cập nhật/xử lý kết quả sau khi thanh toán được thực hiện tại URL này.
+3. Đây là URL server-call-server (Máy chủ VNPAY gọi máy chủ Merchant/website TMĐT)
+4. Merchant trả dữ liệu cho VNPAY bằng định dạng JSON.
