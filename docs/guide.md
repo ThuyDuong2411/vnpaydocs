@@ -2,8 +2,6 @@
 
 Tạo tài khoản merchant môi trường test, VNPAY sẽ gửi thông tin cấu hình cho website của bạn gồm mã website (vnp_TmnCode) và chuỗi bí mật tạo checksum (vnp_HashSecret).
 
-Hướng dẫn tích hợp Cổng thanh toán VNPAY đã có chi tiết trên [website của VNPAY](https://sandbox.vnpayment.vn/apis/docs/huong-dan-tich-hop/)
-
 ### Demo hướng dẫn:
 
 #### Bước 1: Đăng ký account merchant tạo môi trường test
