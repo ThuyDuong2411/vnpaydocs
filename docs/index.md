@@ -1,5 +1,7 @@
 ## Giới thiệu
 
+Lập trình viên code theo [Tài liệu đặc tả kết nối](https://sandbox.vnpayment.vn/apis/downloads/#t%C3%A0i-li%E1%BB%87u-%C4%91%E1%BA%B7c-t%E1%BA%A3-k%E1%BB%B9-thu%E1%BA%ADt) mà VNPPAY cung cấp để tích hợp vào phần mềm của đơn vị.
+
 Hiện VNPAY đã hỗ trợ demo cho các ngôn ngữ lập trình: PHP, C#, Python, Java, NodeJS.
 
 ## Thông tin cấu hình
