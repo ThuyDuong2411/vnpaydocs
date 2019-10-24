@@ -50,7 +50,7 @@ Ví dụ:
 
 `vnp_SecureHash`: Mã kiểm tra (checksum) để đảm bảo dữ liệu của giao dịch không bị thay đổi từ quá trình chuyển từ merchant sang VNPAY.
 
-**Một số lưu ý của VNPAY**
+**Một số lưu ý**
 
 1. Dữ liệu checksum được thành lập dựa trên việc sắp xếp tăng dần của tên tham số (QueryString).
 2. Số tiền cần thanh toán nhân với 100 để triệt tiêu phần thập phân trước khi gửi sang VNPAY.
