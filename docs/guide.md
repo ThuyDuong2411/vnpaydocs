@@ -2,7 +2,7 @@
 
 Tạo tài khoản merchant môi trường test, VNPAY sẽ gửi thông tin cấu hình cho website của bạn gồm mã website (vnp_TmnCode) và chuỗi bí mật tạo checksum (vnp_HashSecret).
 
-### Hướng dẫn:
+### Hướng dẫn
 
 #### Bước 1: Đăng ký account merchant tạo môi trường test
 
@@ -96,7 +96,7 @@ Ví dụ:
 3. Đây là URL server-call-server (Máy chủ VNPAY gọi máy chủ Merchant/website TMĐT)
 4. Merchant trả dữ liệu cho VNPAY bằng định dạng JSON.
 
-### Demo API:
+### Demo API
 
 #### API Thanh toán:
 
@@ -116,9 +116,36 @@ Ví dụ:
                 }
         }
 
+
 * Sau khi thanh toán hoàn tất, VNPAY sẽ redirect về website TMĐT dựa vào tham số returnURL đã truyền lúc thanh toán.
+
+#### API trả về:
 
 * URL trả về có dạng: **http://return?query** (Trong đó: return là route trả về khi thanh toán hoàn thành, query là các tham số thông tin đơn hàng và do VNPAY trả về cho website TMĐT - đã giải thích rõ ở phần hướng dẫn).
 
-#### API IPN:
+* Kiểm tra request `vnp_ResponseCode`, nếu bằng '00' thì hiển thị kết quả thanh toán thành công và tiến hành cập nhật dữ liệu của đơn hàng vào database, còn các không bằng '00' thì giao dịch không thành công và hiển thị lỗi cho người dùng.
 
+* Dữ liệu API trả về thành công sẽ có dạng như ví dụ dưới:
+
+        {
+        "code": 200,
+        "message": "Successful transaction",
+        "data": {
+                "order": {
+                        "id": 54,
+                        "user_id": 1,
+                        "sum_price": 530000,
+                        "charge": 18550,
+                        "deposit": 548550,
+                        "delivery_date": "2019-10-17",
+                        "shop_id": 1,
+                        "status": 3,
+                        "payment": 0,
+                        "description": "",
+                        "note": "",
+                        "created_at": "2019-10-17 10:48:09",
+                        "updated_at": "2019-10-24 15:56:59",
+                        "deleted_at": null
+                        }
+                }
+        }
