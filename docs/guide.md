@@ -4,15 +4,15 @@ Tạo tài khoản merchant môi trường test, VNPAY sẽ gửi thông tin c�
 
 Hướng dẫn tích hợp Cổng thanh toán VNPAY đã có chi tiết trên [website của VNPAY](https://sandbox.vnpayment.vn/apis/docs/huong-dan-tich-hop/)
 
-Demo hướng dẫn:
+### Demo hướng dẫn:
 
 #### Bước 1: Đăng ký account merchant tạo môi trường test
 
 Khi đăng ký môi trường test, VNPAY sẽ cũng cấp thông tin cấu hình như sau:
 
-<p>
-        <img src="img/cauhinh.png">
-</p>
+        Thông tin cấu hình:
+                Mã website: WDMUV7FB
+                Chuỗi bí mật tạo checksum: FHKLXLGSMYEVDKGPZXXNPQGWOJFBTOTN
 
 #### Bước 2: Tạo URL thanh toán
 
@@ -70,7 +70,7 @@ URL có dạng:
 
 **Một số lưu ý**
 
-1. URL này hcir kiểm tra toàn vẹn dữ liệu (checksum) và hiển thị thông báo tới khách hàng.
+1. URL này chỉ kiểm tra toàn vẹn dữ liệu (checksum) và hiển thị thông báo tới khách hàng.
 2. Không cập nhật kết quả giao dịch tại địa chỉ này.
 
 #### Bước 4: Tạo URL IPN
@@ -87,3 +87,5 @@ URL có dạng:
 2. Thao tác cập nhật/xử lý kết quả sau khi thanh toán được thực hiện tại URL này.
 3. Đây là URL server-call-server (Máy chủ VNPAY gọi máy chủ Merchant/website TMĐT)
 4. Merchant trả dữ liệu cho VNPAY bằng định dạng JSON.
+
+### Demo API:
