@@ -2,7 +2,7 @@
 
 Tạo tài khoản merchant môi trường test, VNPAY sẽ gửi thông tin cấu hình cho website của bạn gồm mã website (vnp_TmnCode) và chuỗi bí mật tạo checksum (vnp_HashSecret).
 
-### Demo hướng dẫn:
+### Hướng dẫn:
 
 #### Bước 1: Đăng ký account merchant tạo môi trường test
 
@@ -16,7 +16,7 @@ Khi đăng ký môi trường test, VNPAY sẽ cũng cấp thông tin cấu hìn
 
 Website TMĐT gửi sang Cổng thanh toán VNPAY các thông tin này khi xử lý giao dịch thanh toán trực tuyến cho khách mua hàng.
 
-URL có dạng:
+Ví dụ:
 
         http://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=51750000&vnp_BankCode=NCB&vnp_Command=pay&vnp_CreateDate=20191023161955&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng&vnp_OrderType=billpayment&vnp_ReturnUrl=http%3A%2F%2Fali33.ga%2Flist-cart&vnp_TmnCode=WDMUV7FB&vnp_TxnRef=40&vnp_Version=2.0.0&vnp_SecureHashType=SHA256&vnp_SecureHash=c4024fd86df5435d7f5b26988bd510f44830be92222d82afc60eee92cc1fcf58
 
@@ -62,20 +62,30 @@ URL có dạng:
 
 Dùng để hiển thị màn hình thông báo kết quả giao dịch tới khách hàng, xử lý ở Frontend
 
-URL có dạng:
+Ví dụ:
 
         http://ali33.ga/list-cart?vnp_Amount=51750000&vnp_BankCode=NCB&vnp_BankTranNo=20191023165545&vnp_CardType=ATM&vnp_OrderInfo=Thanh%20to%C3%A1n%20%C4%91%C6%A1n%20h%C3%A0ng&vnp_PayDate=20191023165534&vnp_ResponseCode=00&vnp_TmnCode=WDMUV7FB&vnp_TransactionNo=13185888&vnp_TxnRef=49&vnp_SecureHashType=SHA256&vnp_SecureHash=eb626884b217e028f44efe77f5c23716f96cd246c5b87ba7d4badacc9b0c07b6
+
+Một số tham số VNPAY trả về:
+
+`vnp_BankTranNo`: Mã giao dịch tại ngân hàng.
+
+`vnp_CardType`: Loại tài khoản/thẻ khách hàng sử dụng.
+
+`vnp_ResponseCode`: Mã phản hồi kết quả thanh toán. Quy định mã trả lời 00 ứng với Thành công cho tất cả API.
+
+`vnp_TransactionNo`: Mã giao dịch ghi nhận tại hệ thống VNPAY.
 
 **Một số lưu ý**
 
 1. URL này chỉ kiểm tra toàn vẹn dữ liệu (checksum) và hiển thị thông báo tới khách hàng.
 2. Không cập nhật kết quả giao dịch tại địa chỉ này.
 
-#### Bước 4: Tạo URL IPN
+#### Bước 4: Tạo URL IPN(Instant Payment Notification)
 
 Địa chỉ để nhận kết quả thanh toán từ VNPAY. Trên URL VNPAY gọi về có mang thông tin thanh toán để căn cứ vào kết quả đó Website TMĐT xử lý các bước tiếp theo.
 
-URL có dạng:
+Ví dụ:
 
         http://sandbox.vnpayment.vn/tryitnow/Home/VnPayIPN?vnp_Amount=1000000&vnp_BankCode=NCB&vnp_BankTranNo=20170829152730&vnp_CardType=ATM&vnp_OrderInfo=Thanh+toan+don+hang+thoi+gian%3A+2017-08-29+15%3A27%3A02&vnp_PayDate=20170829153052&vnp_ResponseCode=00&vnp_TmnCode=2QXUI4J4&vnp_TransactionNo=12996460&vnp_TxnRef=23597&vnp_SecureHashType=SHA256&vnp_SecureHash=20081f0ee1cc6b524e273b6d4050fefd
 
@@ -87,3 +97,28 @@ URL có dạng:
 4. Merchant trả dữ liệu cho VNPAY bằng định dạng JSON.
 
 ### Demo API:
+
+#### API Thanh toán:
+
+* API chứa các tham số như phần hướng dẫn đã nêu rõ, sẽ trả về một chuỗi URL để redirect qua trang thanh toán của VNPAY. 
+
+* Request Body Attributes: `order_id` - hóa đơn cần thanh toán.
+
+* URL thanh toán có dạng: **http://sandbox.vnpayment.vn/paymentv2/vpcpay.html?query** (Trong đó: query là các tham số cần truyền vào)
+
+* Dữ liệu API trả về có dạng như ví dụ dưới:
+
+        {
+        "code": 200,
+        "message": "",
+        "data": {
+                "vnp_url": "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=51750000&vnp_Command=pay&vnp_CreateDate=20191024134733&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng&vnp_OrderType=billpayment&vnp_ReturnUrl=http%3A%2F%2Fali33.ga%2Flist-cart&vnp_TmnCode=WDMUV7FB&vnp_TxnRef=49&vnp_Version=2.0.0&vnp_SecureHashType=SHA256&vnp_SecureHash=e869425dc81f7935e40768387936a18696c74f146ec70a45f66356c55aa2eb64"
+                }
+        }
+
+* Sau khi thanh toán hoàn tất, VNPAY sẽ redirect về website TMĐT dựa vào tham số returnURL đã truyền lúc thanh toán.
+
+* URL trả về có dạng: **http://return?query** (Trong đó: return là route trả về khi thanh toán hoàn thành, query là các tham số thông tin đơn hàng và do VNPAY trả về cho website TMĐT - đã giải thích rõ ở phần hướng dẫn).
+
+#### API IPN:
+
